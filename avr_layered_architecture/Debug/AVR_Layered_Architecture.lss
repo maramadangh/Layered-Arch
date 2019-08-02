@@ -1,0 +1,1022 @@
+
+AVR_Layered_Architecture.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000004f6  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000012  00800060  000004f6  0000058a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000003  00800072  00800072  0000059c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000059c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000005cc  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 000000e0  00000000  00000000  00000608  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000bc0  00000000  00000000  000006e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000059e  00000000  00000000  000012a8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000004d3  00000000  00000000  00001846  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000198  00000000  00000000  00001d1c  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000411  00000000  00000000  00001eb4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000632  00000000  00000000  000022c5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000070  00000000  00000000  000028f7  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 ef       	ldi	r30, 0xF6	; 246
+  68:	f4 e0       	ldi	r31, 0x04	; 4
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 37       	cpi	r26, 0x72	; 114
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 e7       	ldi	r26, 0x72	; 114
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a5 37       	cpi	r26, 0x75	; 117
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 af 01 	call	0x35e	; 0x35e <main>
+  8a:	0c 94 79 02 	jmp	0x4f2	; 0x4f2 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <BTN_Init>:
+ extern const BTN_ConfigType BTN_CongfigParam[BTN_NUMBER];
+
+ static BTN_StateType BtnState[BTN_NUMBER];
+
+void BTN_Init(void)
+{
+  92:	af 92       	push	r10
+  94:	bf 92       	push	r11
+  96:	cf 92       	push	r12
+  98:	df 92       	push	r13
+  9a:	ef 92       	push	r14
+  9c:	ff 92       	push	r15
+  9e:	0f 93       	push	r16
+  a0:	1f 93       	push	r17
+  a2:	cf 93       	push	r28
+  a4:	df 93       	push	r29
+  a6:	00 d0       	rcall	.+0      	; 0xa8 <BTN_Init+0x16>
+  a8:	00 d0       	rcall	.+0      	; 0xaa <BTN_Init+0x18>
+  aa:	cd b7       	in	r28, 0x3d	; 61
+  ac:	de b7       	in	r29, 0x3e	; 62
+	GPIO_Init_Param_t BtnParam;
+	unsigned long int LoopIndex;
+	BtnParam.Direction = 0x00;
+  ae:	1b 82       	std	Y+3, r1	; 0x03
+  b0:	02 e6       	ldi	r16, 0x62	; 98
+  b2:	10 e0       	ldi	r17, 0x00	; 0
+  b4:	0f 2e       	mov	r0, r31
+  b6:	f2 e7       	ldi	r31, 0x72	; 114
+  b8:	ef 2e       	mov	r14, r31
+  ba:	f0 e0       	ldi	r31, 0x00	; 0
+  bc:	ff 2e       	mov	r15, r31
+  be:	f0 2d       	mov	r31, r0
+  c0:	0f 2e       	mov	r0, r31
+  c2:	f5 e7       	ldi	r31, 0x75	; 117
+  c4:	cf 2e       	mov	r12, r31
+  c6:	f0 e0       	ldi	r31, 0x00	; 0
+  c8:	df 2e       	mov	r13, r31
+  ca:	f0 2d       	mov	r31, r0
+	for(LoopIndex =0; LoopIndex < BTN_NUMBER; LoopIndex ++)
+	{
+		BtnParam.IsPulledUp = (!BTN_CongfigParam[LoopIndex].ConnetionType) << BTN_CongfigParam[LoopIndex].PinNumber;
+  cc:	bb 24       	eor	r11, r11
+  ce:	b3 94       	inc	r11
+  d0:	a1 2c       	mov	r10, r1
+  d2:	d8 01       	movw	r26, r16
+  d4:	f8 01       	movw	r30, r16
+  d6:	31 97       	sbiw	r30, 0x01	; 1
+  d8:	90 81       	ld	r25, Z
+  da:	8b 2d       	mov	r24, r11
+  dc:	31 97       	sbiw	r30, 0x01	; 1
+  de:	20 81       	ld	r18, Z
+  e0:	21 11       	cpse	r18, r1
+  e2:	8a 2d       	mov	r24, r10
+  e4:	09 2e       	mov	r0, r25
+  e6:	01 c0       	rjmp	.+2      	; 0xea <BTN_Init+0x58>
+  e8:	88 0f       	add	r24, r24
+  ea:	0a 94       	dec	r0
+  ec:	ea f7       	brpl	.-6      	; 0xe8 <BTN_Init+0x56>
+  ee:	8c 83       	std	Y+4, r24	; 0x04
+		BtnParam.Mask = 1 << BTN_CongfigParam[LoopIndex].PinNumber;
+  f0:	8b 2d       	mov	r24, r11
+  f2:	01 c0       	rjmp	.+2      	; 0xf6 <BTN_Init+0x64>
+  f4:	88 0f       	add	r24, r24
+  f6:	9a 95       	dec	r25
+  f8:	ea f7       	brpl	.-6      	; 0xf4 <BTN_Init+0x62>
+  fa:	8a 83       	std	Y+2, r24	; 0x02
+		BtnParam.Port_Name = BTN_CongfigParam[LoopIndex].PortName;
+  fc:	8c 91       	ld	r24, X
+  fe:	89 83       	std	Y+1, r24	; 0x01
+		GPIO_Init(&BtnParam);
+ 100:	ce 01       	movw	r24, r28
+ 102:	01 96       	adiw	r24, 0x01	; 1
+ 104:	0e 94 c8 01 	call	0x390	; 0x390 <GPIO_Init>
+		BtnState[LoopIndex]= BTN_OFF;
+ 108:	f7 01       	movw	r30, r14
+ 10a:	11 92       	st	Z+, r1
+ 10c:	7f 01       	movw	r14, r30
+ 10e:	0d 5f       	subi	r16, 0xFD	; 253
+ 110:	1f 4f       	sbci	r17, 0xFF	; 255
+void BTN_Init(void)
+{
+	GPIO_Init_Param_t BtnParam;
+	unsigned long int LoopIndex;
+	BtnParam.Direction = 0x00;
+	for(LoopIndex =0; LoopIndex < BTN_NUMBER; LoopIndex ++)
+ 112:	ec 15       	cp	r30, r12
+ 114:	fd 05       	cpc	r31, r13
+ 116:	e9 f6       	brne	.-70     	; 0xd2 <BTN_Init+0x40>
+		BtnParam.Port_Name = BTN_CongfigParam[LoopIndex].PortName;
+		GPIO_Init(&BtnParam);
+		BtnState[LoopIndex]= BTN_OFF;
+		
+	}
+}
+ 118:	0f 90       	pop	r0
+ 11a:	0f 90       	pop	r0
+ 11c:	0f 90       	pop	r0
+ 11e:	0f 90       	pop	r0
+ 120:	df 91       	pop	r29
+ 122:	cf 91       	pop	r28
+ 124:	1f 91       	pop	r17
+ 126:	0f 91       	pop	r16
+ 128:	ff 90       	pop	r15
+ 12a:	ef 90       	pop	r14
+ 12c:	df 90       	pop	r13
+ 12e:	cf 90       	pop	r12
+ 130:	bf 90       	pop	r11
+ 132:	af 90       	pop	r10
+ 134:	08 95       	ret
+
+00000136 <BTN_GetState>:
+BTN_StateType BTN_GetState(uint8_t BtnId)
+{
+ 136:	ff 92       	push	r15
+ 138:	0f 93       	push	r16
+ 13a:	1f 93       	push	r17
+ 13c:	cf 93       	push	r28
+ 13e:	df 93       	push	r29
+ 140:	00 d0       	rcall	.+0      	; 0x142 <BTN_GetState+0xc>
+ 142:	cd b7       	in	r28, 0x3d	; 61
+ 144:	de b7       	in	r29, 0x3e	; 62
+	uint8_t PinData;
+	GPIO_Read_Param_t BtnParam;
+	unsigned char ActiveType = BTN_CongfigParam[BtnId].ConnetionType << BTN_CongfigParam[BtnId].PinNumber;
+ 146:	08 2f       	mov	r16, r24
+ 148:	10 e0       	ldi	r17, 0x00	; 0
+ 14a:	f8 01       	movw	r30, r16
+ 14c:	ee 0f       	add	r30, r30
+ 14e:	ff 1f       	adc	r31, r31
+ 150:	e0 0f       	add	r30, r16
+ 152:	f1 1f       	adc	r31, r17
+ 154:	e0 5a       	subi	r30, 0xA0	; 160
+ 156:	ff 4f       	sbci	r31, 0xFF	; 255
+ 158:	91 81       	ldd	r25, Z+1	; 0x01
+ 15a:	80 81       	ld	r24, Z
+ 15c:	f8 2e       	mov	r15, r24
+ 15e:	09 2e       	mov	r0, r25
+ 160:	01 c0       	rjmp	.+2      	; 0x164 <BTN_GetState+0x2e>
+ 162:	ff 0c       	add	r15, r15
+ 164:	0a 94       	dec	r0
+ 166:	ea f7       	brpl	.-6      	; 0x162 <BTN_GetState+0x2c>
+	BtnParam.Mask = 1 << BTN_CongfigParam[BtnId].PinNumber;
+ 168:	81 e0       	ldi	r24, 0x01	; 1
+ 16a:	01 c0       	rjmp	.+2      	; 0x16e <BTN_GetState+0x38>
+ 16c:	88 0f       	add	r24, r24
+ 16e:	9a 95       	dec	r25
+ 170:	ea f7       	brpl	.-6      	; 0x16c <BTN_GetState+0x36>
+ 172:	8a 83       	std	Y+2, r24	; 0x02
+	BtnParam.Port_Name = BTN_CongfigParam[BtnId].PortName;
+ 174:	82 81       	ldd	r24, Z+2	; 0x02
+ 176:	89 83       	std	Y+1, r24	; 0x01
+	PinData = GPIO_Read(&BtnParam);
+ 178:	ce 01       	movw	r24, r28
+ 17a:	01 96       	adiw	r24, 0x01	; 1
+ 17c:	0e 94 5d 02 	call	0x4ba	; 0x4ba <GPIO_Read>
+	
+	switch(BtnState[BtnId])
+ 180:	f8 01       	movw	r30, r16
+ 182:	ee 58       	subi	r30, 0x8E	; 142
+ 184:	ff 4f       	sbci	r31, 0xFF	; 255
+ 186:	90 81       	ld	r25, Z
+ 188:	91 30       	cpi	r25, 0x01	; 1
+ 18a:	09 f1       	breq	.+66     	; 0x1ce <BTN_GetState+0x98>
+ 18c:	28 f0       	brcs	.+10     	; 0x198 <BTN_GetState+0x62>
+ 18e:	92 30       	cpi	r25, 0x02	; 2
+ 190:	81 f0       	breq	.+32     	; 0x1b2 <BTN_GetState+0x7c>
+ 192:	93 30       	cpi	r25, 0x03	; 3
+ 194:	51 f1       	breq	.+84     	; 0x1ea <BTN_GetState+0xb4>
+ 196:	35 c0       	rjmp	.+106    	; 0x202 <BTN_GetState+0xcc>
+	{
+		case BTN_OFF:
+		{
+			
+			if(PinData == ActiveType)
+ 198:	8f 11       	cpse	r24, r15
+ 19a:	06 c0       	rjmp	.+12     	; 0x1a8 <BTN_GetState+0x72>
+			{
+				
+				BtnState[BtnId] = BTN_JUST_PRESSED;
+ 19c:	82 e0       	ldi	r24, 0x02	; 2
+ 19e:	f8 01       	movw	r30, r16
+ 1a0:	ee 58       	subi	r30, 0x8E	; 142
+ 1a2:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1a4:	80 83       	st	Z, r24
+ 1a6:	2d c0       	rjmp	.+90     	; 0x202 <BTN_GetState+0xcc>
+			}
+			else
+			{
+				BtnState[BtnId] = BTN_OFF;
+ 1a8:	f8 01       	movw	r30, r16
+ 1aa:	ee 58       	subi	r30, 0x8E	; 142
+ 1ac:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ae:	10 82       	st	Z, r1
+ 1b0:	28 c0       	rjmp	.+80     	; 0x202 <BTN_GetState+0xcc>
+		}
+		break;
+		
+		case BTN_JUST_PRESSED:
+		{
+			if(PinData == ActiveType)
+ 1b2:	8f 11       	cpse	r24, r15
+ 1b4:	06 c0       	rjmp	.+12     	; 0x1c2 <BTN_GetState+0x8c>
+			{
+				BtnState[BtnId] = BTN_ON;
+ 1b6:	81 e0       	ldi	r24, 0x01	; 1
+ 1b8:	f8 01       	movw	r30, r16
+ 1ba:	ee 58       	subi	r30, 0x8E	; 142
+ 1bc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1be:	80 83       	st	Z, r24
+ 1c0:	20 c0       	rjmp	.+64     	; 0x202 <BTN_GetState+0xcc>
+			}
+			else
+			{
+				BtnState[BtnId] = BTN_JUST_RELEASED;
+ 1c2:	83 e0       	ldi	r24, 0x03	; 3
+ 1c4:	f8 01       	movw	r30, r16
+ 1c6:	ee 58       	subi	r30, 0x8E	; 142
+ 1c8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1ca:	80 83       	st	Z, r24
+ 1cc:	1a c0       	rjmp	.+52     	; 0x202 <BTN_GetState+0xcc>
+		}
+		break;
+		
+		case BTN_ON:
+		{
+			if(PinData == ActiveType)
+ 1ce:	8f 11       	cpse	r24, r15
+ 1d0:	06 c0       	rjmp	.+12     	; 0x1de <BTN_GetState+0xa8>
+			{
+				BtnState[BtnId] = BTN_ON;
+ 1d2:	81 e0       	ldi	r24, 0x01	; 1
+ 1d4:	f8 01       	movw	r30, r16
+ 1d6:	ee 58       	subi	r30, 0x8E	; 142
+ 1d8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1da:	80 83       	st	Z, r24
+ 1dc:	12 c0       	rjmp	.+36     	; 0x202 <BTN_GetState+0xcc>
+			}
+			else
+			{
+				BtnState[BtnId] = BTN_JUST_RELEASED;
+ 1de:	83 e0       	ldi	r24, 0x03	; 3
+ 1e0:	f8 01       	movw	r30, r16
+ 1e2:	ee 58       	subi	r30, 0x8E	; 142
+ 1e4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1e6:	80 83       	st	Z, r24
+ 1e8:	0c c0       	rjmp	.+24     	; 0x202 <BTN_GetState+0xcc>
+		}
+		break;
+		
+		case BTN_JUST_RELEASED:
+		{
+			if(PinData == ActiveType)
+ 1ea:	8f 11       	cpse	r24, r15
+ 1ec:	06 c0       	rjmp	.+12     	; 0x1fa <BTN_GetState+0xc4>
+			{
+				BtnState[BtnId] = BTN_JUST_PRESSED;
+ 1ee:	82 e0       	ldi	r24, 0x02	; 2
+ 1f0:	f8 01       	movw	r30, r16
+ 1f2:	ee 58       	subi	r30, 0x8E	; 142
+ 1f4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1f6:	80 83       	st	Z, r24
+ 1f8:	04 c0       	rjmp	.+8      	; 0x202 <BTN_GetState+0xcc>
+			}
+			else
+			{
+				BtnState[BtnId] = BTN_OFF;
+ 1fa:	f8 01       	movw	r30, r16
+ 1fc:	ee 58       	subi	r30, 0x8E	; 142
+ 1fe:	ff 4f       	sbci	r31, 0xFF	; 255
+ 200:	10 82       	st	Z, r1
+			}
+		}
+		break;
+	}
+	return BtnState[BtnId];
+ 202:	f8 01       	movw	r30, r16
+ 204:	ee 58       	subi	r30, 0x8E	; 142
+ 206:	ff 4f       	sbci	r31, 0xFF	; 255
+ 208:	80 81       	ld	r24, Z
+ 20a:	0f 90       	pop	r0
+ 20c:	0f 90       	pop	r0
+ 20e:	df 91       	pop	r29
+ 210:	cf 91       	pop	r28
+ 212:	1f 91       	pop	r17
+ 214:	0f 91       	pop	r16
+ 216:	ff 90       	pop	r15
+ 218:	08 95       	ret
+
+0000021a <LED_SetData>:
+		 
+	 }
+ }
+
+ void LED_SetData(uint8_t LedId,LED_DataType LedData)
+ {
+ 21a:	cf 93       	push	r28
+ 21c:	df 93       	push	r29
+ 21e:	00 d0       	rcall	.+0      	; 0x220 <LED_SetData+0x6>
+ 220:	1f 92       	push	r1
+ 222:	cd b7       	in	r28, 0x3d	; 61
+ 224:	de b7       	in	r29, 0x3e	; 62
+	 
+	 GPIO_Write_Param_t LedParam;
+	 LedParam.Port_Name = LED_ConfigParam[LedId].PortName;
+ 226:	90 e0       	ldi	r25, 0x00	; 0
+ 228:	fc 01       	movw	r30, r24
+ 22a:	ee 0f       	add	r30, r30
+ 22c:	ff 1f       	adc	r31, r31
+ 22e:	e8 0f       	add	r30, r24
+ 230:	f9 1f       	adc	r31, r25
+ 232:	e7 59       	subi	r30, 0x97	; 151
+ 234:	ff 4f       	sbci	r31, 0xFF	; 255
+ 236:	22 81       	ldd	r18, Z+2	; 0x02
+ 238:	29 83       	std	Y+1, r18	; 0x01
+	 LedParam.Mask = 1 << LED_ConfigParam[LedId].PinNum;
+ 23a:	21 e0       	ldi	r18, 0x01	; 1
+ 23c:	30 e0       	ldi	r19, 0x00	; 0
+ 23e:	01 80       	ldd	r0, Z+1	; 0x01
+ 240:	02 c0       	rjmp	.+4      	; 0x246 <LED_SetData+0x2c>
+ 242:	22 0f       	add	r18, r18
+ 244:	33 1f       	adc	r19, r19
+ 246:	0a 94       	dec	r0
+ 248:	e2 f7       	brpl	.-8      	; 0x242 <LED_SetData+0x28>
+ 24a:	2a 83       	std	Y+2, r18	; 0x02
+
+	 switch(LedData)
+ 24c:	66 23       	and	r22, r22
+ 24e:	19 f0       	breq	.+6      	; 0x256 <LED_SetData+0x3c>
+ 250:	61 30       	cpi	r22, 0x01	; 1
+ 252:	81 f0       	breq	.+32     	; 0x274 <LED_SetData+0x5a>
+ 254:	1d c0       	rjmp	.+58     	; 0x290 <LED_SetData+0x76>
+	 {
+		case  OFF:
+		if ( LED_ConfigParam[LedId].ConnectionType == ACTIVE_HIGH)
+ 256:	fc 01       	movw	r30, r24
+ 258:	ee 0f       	add	r30, r30
+ 25a:	ff 1f       	adc	r31, r31
+ 25c:	8e 0f       	add	r24, r30
+ 25e:	9f 1f       	adc	r25, r31
+ 260:	fc 01       	movw	r30, r24
+ 262:	e7 59       	subi	r30, 0x97	; 151
+ 264:	ff 4f       	sbci	r31, 0xFF	; 255
+ 266:	80 81       	ld	r24, Z
+ 268:	81 30       	cpi	r24, 0x01	; 1
+ 26a:	11 f4       	brne	.+4      	; 0x270 <LED_SetData+0x56>
+		{
+		 LedParam.Data = 0;
+ 26c:	1b 82       	std	Y+3, r1	; 0x03
+ 26e:	10 c0       	rjmp	.+32     	; 0x290 <LED_SetData+0x76>
+		}
+		else
+		{
+		 LedParam.Data = 1 << LED_ConfigParam[LedId].PinNum;
+ 270:	2b 83       	std	Y+3, r18	; 0x03
+ 272:	0e c0       	rjmp	.+28     	; 0x290 <LED_SetData+0x76>
+		}
+
+		break;
+
+		case ON:
+		if ( LED_ConfigParam[LedId].ConnectionType == ACTIVE_HIGH)
+ 274:	fc 01       	movw	r30, r24
+ 276:	ee 0f       	add	r30, r30
+ 278:	ff 1f       	adc	r31, r31
+ 27a:	8e 0f       	add	r24, r30
+ 27c:	9f 1f       	adc	r25, r31
+ 27e:	fc 01       	movw	r30, r24
+ 280:	e7 59       	subi	r30, 0x97	; 151
+ 282:	ff 4f       	sbci	r31, 0xFF	; 255
+ 284:	80 81       	ld	r24, Z
+ 286:	81 30       	cpi	r24, 0x01	; 1
+ 288:	11 f4       	brne	.+4      	; 0x28e <LED_SetData+0x74>
+		{
+			LedParam.Data = 1 << LED_ConfigParam[LedId].PinNum;
+ 28a:	2b 83       	std	Y+3, r18	; 0x03
+ 28c:	01 c0       	rjmp	.+2      	; 0x290 <LED_SetData+0x76>
+		}
+		else
+		{
+			LedParam.Data = 0;
+ 28e:	1b 82       	std	Y+3, r1	; 0x03
+		break;
+
+	 }
+
+
+	 GPIO_Write(&LedParam);
+ 290:	ce 01       	movw	r24, r28
+ 292:	01 96       	adiw	r24, 0x01	; 1
+ 294:	0e 94 27 02 	call	0x44e	; 0x44e <GPIO_Write>
+
+	 
+
+ 298:	0f 90       	pop	r0
+ 29a:	0f 90       	pop	r0
+ 29c:	0f 90       	pop	r0
+ 29e:	df 91       	pop	r29
+ 2a0:	cf 91       	pop	r28
+ 2a2:	08 95       	ret
+
+000002a4 <LED_Init>:
+ #include "ECU_LED.h"
+ 
+
+ extern const LED_ConfigType LED_ConfigParam[LED_NUMBER];
+ void LED_Init(void)
+ {
+ 2a4:	cf 92       	push	r12
+ 2a6:	df 92       	push	r13
+ 2a8:	ef 92       	push	r14
+ 2aa:	ff 92       	push	r15
+ 2ac:	1f 93       	push	r17
+ 2ae:	cf 93       	push	r28
+ 2b0:	df 93       	push	r29
+ 2b2:	00 d0       	rcall	.+0      	; 0x2b4 <LED_Init+0x10>
+ 2b4:	00 d0       	rcall	.+0      	; 0x2b6 <LED_Init+0x12>
+ 2b6:	cd b7       	in	r28, 0x3d	; 61
+ 2b8:	de b7       	in	r29, 0x3e	; 62
+	 uint8_t LoopIndex;
+	 GPIO_Init_Param_t LedParam;
+	 LedParam.IsPulledUp = 0;
+ 2ba:	1c 82       	std	Y+4, r1	; 0x04
+	 LedParam.Direction = 0xff;
+ 2bc:	8f ef       	ldi	r24, 0xFF	; 255
+ 2be:	8b 83       	std	Y+3, r24	; 0x03
+ 2c0:	0f 2e       	mov	r0, r31
+ 2c2:	fb e6       	ldi	r31, 0x6B	; 107
+ 2c4:	ef 2e       	mov	r14, r31
+ 2c6:	f0 e0       	ldi	r31, 0x00	; 0
+ 2c8:	ff 2e       	mov	r15, r31
+ 2ca:	f0 2d       	mov	r31, r0
+	 for(LoopIndex = 0; LoopIndex < LED_NUMBER; LoopIndex ++)
+ 2cc:	10 e0       	ldi	r17, 0x00	; 0
+	 {
+		 /*Collect  initialization parameters for each LED*/
+		 LedParam.Mask = 1 << LED_ConfigParam[LoopIndex].PinNum;
+ 2ce:	cc 24       	eor	r12, r12
+ 2d0:	c3 94       	inc	r12
+ 2d2:	d1 2c       	mov	r13, r1
+ 2d4:	f7 01       	movw	r30, r14
+ 2d6:	31 97       	sbiw	r30, 0x01	; 1
+ 2d8:	c6 01       	movw	r24, r12
+ 2da:	00 80       	ld	r0, Z
+ 2dc:	02 c0       	rjmp	.+4      	; 0x2e2 <LED_Init+0x3e>
+ 2de:	88 0f       	add	r24, r24
+ 2e0:	99 1f       	adc	r25, r25
+ 2e2:	0a 94       	dec	r0
+ 2e4:	e2 f7       	brpl	.-8      	; 0x2de <LED_Init+0x3a>
+ 2e6:	8a 83       	std	Y+2, r24	; 0x02
+		// LedParam.Direction = 1 << LED_ConfigParam[LoopIndex].PinNum;
+		 LedParam.Port_Name = LED_ConfigParam[LoopIndex].PortName;
+ 2e8:	f7 01       	movw	r30, r14
+ 2ea:	80 81       	ld	r24, Z
+ 2ec:	89 83       	std	Y+1, r24	; 0x01
+		 GPIO_Init(&LedParam);
+ 2ee:	ce 01       	movw	r24, r28
+ 2f0:	01 96       	adiw	r24, 0x01	; 1
+ 2f2:	0e 94 c8 01 	call	0x390	; 0x390 <GPIO_Init>
+		 LED_SetData(LoopIndex,OFF);
+ 2f6:	60 e0       	ldi	r22, 0x00	; 0
+ 2f8:	81 2f       	mov	r24, r17
+ 2fa:	0e 94 0d 01 	call	0x21a	; 0x21a <LED_SetData>
+ {
+	 uint8_t LoopIndex;
+	 GPIO_Init_Param_t LedParam;
+	 LedParam.IsPulledUp = 0;
+	 LedParam.Direction = 0xff;
+	 for(LoopIndex = 0; LoopIndex < LED_NUMBER; LoopIndex ++)
+ 2fe:	1f 5f       	subi	r17, 0xFF	; 255
+ 300:	f3 e0       	ldi	r31, 0x03	; 3
+ 302:	ef 0e       	add	r14, r31
+ 304:	f1 1c       	adc	r15, r1
+ 306:	13 30       	cpi	r17, 0x03	; 3
+ 308:	29 f7       	brne	.-54     	; 0x2d4 <LED_Init+0x30>
+		 LedParam.Port_Name = LED_ConfigParam[LoopIndex].PortName;
+		 GPIO_Init(&LedParam);
+		 LED_SetData(LoopIndex,OFF);
+		 
+	 }
+ }
+ 30a:	0f 90       	pop	r0
+ 30c:	0f 90       	pop	r0
+ 30e:	0f 90       	pop	r0
+ 310:	0f 90       	pop	r0
+ 312:	df 91       	pop	r29
+ 314:	cf 91       	pop	r28
+ 316:	1f 91       	pop	r17
+ 318:	ff 90       	pop	r15
+ 31a:	ef 90       	pop	r14
+ 31c:	df 90       	pop	r13
+ 31e:	cf 90       	pop	r12
+ 320:	08 95       	ret
+
+00000322 <Check_Btn>:
+		Update_Value(value);
+    }
+}
+
+uint8_t Check_Btn(void)
+{
+ 322:	cf 93       	push	r28
+	BTN_StateType btnState = BTN_OFF;
+	uint8_t activeBtnId = 255;
+	uint8_t index;
+	for (index=0;index<3;index++)
+ 324:	c0 e0       	ldi	r28, 0x00	; 0
+	{
+		btnState = BTN_GetState(index);
+ 326:	8c 2f       	mov	r24, r28
+ 328:	0e 94 9b 00 	call	0x136	; 0x136 <BTN_GetState>
+		if (btnState == BTN_JUST_RELEASED)
+ 32c:	83 30       	cpi	r24, 0x03	; 3
+ 32e:	21 f0       	breq	.+8      	; 0x338 <Check_Btn+0x16>
+uint8_t Check_Btn(void)
+{
+	BTN_StateType btnState = BTN_OFF;
+	uint8_t activeBtnId = 255;
+	uint8_t index;
+	for (index=0;index<3;index++)
+ 330:	cf 5f       	subi	r28, 0xFF	; 255
+ 332:	c3 30       	cpi	r28, 0x03	; 3
+ 334:	c1 f7       	brne	.-16     	; 0x326 <Check_Btn+0x4>
+ 336:	cf ef       	ldi	r28, 0xFF	; 255
+			
+			index = 3;
+		}
+	}
+	return activeBtnId;
+}
+ 338:	8c 2f       	mov	r24, r28
+ 33a:	cf 91       	pop	r28
+ 33c:	08 95       	ret
+
+0000033e <Update_Value>:
+void Update_Value(uint8_t value)
+{
+ 33e:	cf 93       	push	r28
+ 340:	df 93       	push	r29
+ 342:	d8 2f       	mov	r29, r24
+	uint8_t index;
+	for (index=0;index<3;index++)
+ 344:	c0 e0       	ldi	r28, 0x00	; 0
+	{
+		//LED_SetData(index,(LED_DataType)((value&(1U<<index))>> index));
+		LED_SetData(index,(LED_DataType)value % 2);
+ 346:	6d 2f       	mov	r22, r29
+ 348:	61 70       	andi	r22, 0x01	; 1
+ 34a:	8c 2f       	mov	r24, r28
+ 34c:	0e 94 0d 01 	call	0x21a	; 0x21a <LED_SetData>
+		value = value / 2;
+ 350:	d6 95       	lsr	r29
+	return activeBtnId;
+}
+void Update_Value(uint8_t value)
+{
+	uint8_t index;
+	for (index=0;index<3;index++)
+ 352:	cf 5f       	subi	r28, 0xFF	; 255
+ 354:	c3 30       	cpi	r28, 0x03	; 3
+ 356:	b9 f7       	brne	.-18     	; 0x346 <Update_Value+0x8>
+	{
+		//LED_SetData(index,(LED_DataType)((value&(1U<<index))>> index));
+		LED_SetData(index,(LED_DataType)value % 2);
+		value = value / 2;
+	}
+ 358:	df 91       	pop	r29
+ 35a:	cf 91       	pop	r28
+ 35c:	08 95       	ret
+
+0000035e <main>:
+{
+    /* Replace with your application code */
+	uint8_t activeBtnId=0;
+	uint8_t value=0;
+
+	LED_Init();
+ 35e:	0e 94 52 01 	call	0x2a4	; 0x2a4 <LED_Init>
+	BTN_Init();
+ 362:	0e 94 49 00 	call	0x92	; 0x92 <BTN_Init>
+
+int main(void)
+{
+    /* Replace with your application code */
+	uint8_t activeBtnId=0;
+	uint8_t value=0;
+ 366:	c0 e0       	ldi	r28, 0x00	; 0
+					value--;
+				}
+			break;
+			case 2:
+				
+				value=0;
+ 368:	d0 e0       	ldi	r29, 0x00	; 0
+	LED_Init();
+	BTN_Init();
+	
+    while (1) 
+    {
+		activeBtnId = Check_Btn();
+ 36a:	0e 94 91 01 	call	0x322	; 0x322 <Check_Btn>
+		switch(activeBtnId)
+ 36e:	81 30       	cpi	r24, 0x01	; 1
+ 370:	49 f0       	breq	.+18     	; 0x384 <main+0x26>
+ 372:	20 f0       	brcs	.+8      	; 0x37c <main+0x1e>
+ 374:	82 30       	cpi	r24, 0x02	; 2
+ 376:	41 f4       	brne	.+16     	; 0x388 <main+0x2a>
+					value--;
+				}
+			break;
+			case 2:
+				
+				value=0;
+ 378:	cd 2f       	mov	r28, r29
+ 37a:	06 c0       	rjmp	.+12     	; 0x388 <main+0x2a>
+    {
+		activeBtnId = Check_Btn();
+		switch(activeBtnId)
+		{
+			case 0:
+				if (value<7)
+ 37c:	c7 30       	cpi	r28, 0x07	; 7
+ 37e:	20 f4       	brcc	.+8      	; 0x388 <main+0x2a>
+				{
+					value++;
+ 380:	cf 5f       	subi	r28, 0xFF	; 255
+ 382:	02 c0       	rjmp	.+4      	; 0x388 <main+0x2a>
+				}
+			break;
+			case 1:
+				if (value>0)
+ 384:	c1 11       	cpse	r28, r1
+				{
+					value--;
+ 386:	c1 50       	subi	r28, 0x01	; 1
+				
+			break;
+			default:
+			break;
+		}
+		Update_Value(value);
+ 388:	8c 2f       	mov	r24, r28
+ 38a:	0e 94 9f 01 	call	0x33e	; 0x33e <Update_Value>
+    }
+ 38e:	ed cf       	rjmp	.-38     	; 0x36a <main+0xc>
+
+00000390 <GPIO_Init>:
+ #include "MCAL_GPIO.h"
+ #include <avr/io.h>
+
+
+ void GPIO_Init(GPIO_Init_Param_t * gpio_Param)
+ {
+ 390:	fc 01       	movw	r30, r24
+	01001010  // direction
+	00001111  // mask
+	00001010
+
+*/
+	switch(gpio_Param->Port_Name)
+ 392:	80 81       	ld	r24, Z
+ 394:	81 30       	cpi	r24, 0x01	; 1
+ 396:	e1 f0       	breq	.+56     	; 0x3d0 <GPIO_Init+0x40>
+ 398:	30 f0       	brcs	.+12     	; 0x3a6 <GPIO_Init+0x16>
+ 39a:	82 30       	cpi	r24, 0x02	; 2
+ 39c:	71 f1       	breq	.+92     	; 0x3fa <GPIO_Init+0x6a>
+ 39e:	83 30       	cpi	r24, 0x03	; 3
+ 3a0:	09 f4       	brne	.+2      	; 0x3a4 <GPIO_Init+0x14>
+ 3a2:	40 c0       	rjmp	.+128    	; 0x424 <GPIO_Init+0x94>
+ 3a4:	08 95       	ret
+	{
+		case PT1:
+			// Set the direction
+			DDRA = (DDRA &~(gpio_Param->Mask)) | (gpio_Param->Direction&gpio_Param->Mask);
+ 3a6:	2a b3       	in	r18, 0x1a	; 26
+ 3a8:	81 81       	ldd	r24, Z+1	; 0x01
+ 3aa:	98 2f       	mov	r25, r24
+ 3ac:	90 95       	com	r25
+ 3ae:	29 23       	and	r18, r25
+ 3b0:	92 81       	ldd	r25, Z+2	; 0x02
+ 3b2:	98 23       	and	r25, r24
+ 3b4:	82 2f       	mov	r24, r18
+ 3b6:	89 2b       	or	r24, r25
+ 3b8:	8a bb       	out	0x1a, r24	; 26
+			PORTA = (PORTA &~(gpio_Param->Mask)) | (gpio_Param->IsPulledUp&gpio_Param->Mask);
+ 3ba:	2b b3       	in	r18, 0x1b	; 27
+ 3bc:	81 81       	ldd	r24, Z+1	; 0x01
+ 3be:	98 2f       	mov	r25, r24
+ 3c0:	90 95       	com	r25
+ 3c2:	29 23       	and	r18, r25
+ 3c4:	93 81       	ldd	r25, Z+3	; 0x03
+ 3c6:	98 23       	and	r25, r24
+ 3c8:	82 2f       	mov	r24, r18
+ 3ca:	89 2b       	or	r24, r25
+ 3cc:	8b bb       	out	0x1b, r24	; 27
+		break;	
+ 3ce:	08 95       	ret
+		case PT2:
+		// Set the direction
+		DDRB = (DDRB &~(gpio_Param->Mask)) | (gpio_Param->Direction&gpio_Param->Mask);
+ 3d0:	27 b3       	in	r18, 0x17	; 23
+ 3d2:	81 81       	ldd	r24, Z+1	; 0x01
+ 3d4:	98 2f       	mov	r25, r24
+ 3d6:	90 95       	com	r25
+ 3d8:	29 23       	and	r18, r25
+ 3da:	92 81       	ldd	r25, Z+2	; 0x02
+ 3dc:	98 23       	and	r25, r24
+ 3de:	82 2f       	mov	r24, r18
+ 3e0:	89 2b       	or	r24, r25
+ 3e2:	87 bb       	out	0x17, r24	; 23
+		PORTB = (PORTB &~(gpio_Param->Mask)) | (gpio_Param->IsPulledUp&gpio_Param->Mask);
+ 3e4:	28 b3       	in	r18, 0x18	; 24
+ 3e6:	81 81       	ldd	r24, Z+1	; 0x01
+ 3e8:	98 2f       	mov	r25, r24
+ 3ea:	90 95       	com	r25
+ 3ec:	29 23       	and	r18, r25
+ 3ee:	93 81       	ldd	r25, Z+3	; 0x03
+ 3f0:	98 23       	and	r25, r24
+ 3f2:	82 2f       	mov	r24, r18
+ 3f4:	89 2b       	or	r24, r25
+ 3f6:	88 bb       	out	0x18, r24	; 24
+		break;
+ 3f8:	08 95       	ret
+		case PT3:
+		// Set the direction
+		DDRC = (DDRC &~(gpio_Param->Mask)) | (gpio_Param->Direction&gpio_Param->Mask);
+ 3fa:	24 b3       	in	r18, 0x14	; 20
+ 3fc:	81 81       	ldd	r24, Z+1	; 0x01
+ 3fe:	98 2f       	mov	r25, r24
+ 400:	90 95       	com	r25
+ 402:	29 23       	and	r18, r25
+ 404:	92 81       	ldd	r25, Z+2	; 0x02
+ 406:	98 23       	and	r25, r24
+ 408:	82 2f       	mov	r24, r18
+ 40a:	89 2b       	or	r24, r25
+ 40c:	84 bb       	out	0x14, r24	; 20
+		PORTC = (PORTC &~(gpio_Param->Mask)) | (gpio_Param->IsPulledUp&gpio_Param->Mask);
+ 40e:	25 b3       	in	r18, 0x15	; 21
+ 410:	81 81       	ldd	r24, Z+1	; 0x01
+ 412:	98 2f       	mov	r25, r24
+ 414:	90 95       	com	r25
+ 416:	29 23       	and	r18, r25
+ 418:	93 81       	ldd	r25, Z+3	; 0x03
+ 41a:	98 23       	and	r25, r24
+ 41c:	82 2f       	mov	r24, r18
+ 41e:	89 2b       	or	r24, r25
+ 420:	85 bb       	out	0x15, r24	; 21
+		break;
+ 422:	08 95       	ret
+		case PT4:
+		// Set the direction
+		DDRD = (DDRD &~(gpio_Param->Mask)) | (gpio_Param->Direction&gpio_Param->Mask);
+ 424:	21 b3       	in	r18, 0x11	; 17
+ 426:	81 81       	ldd	r24, Z+1	; 0x01
+ 428:	98 2f       	mov	r25, r24
+ 42a:	90 95       	com	r25
+ 42c:	29 23       	and	r18, r25
+ 42e:	92 81       	ldd	r25, Z+2	; 0x02
+ 430:	98 23       	and	r25, r24
+ 432:	82 2f       	mov	r24, r18
+ 434:	89 2b       	or	r24, r25
+ 436:	81 bb       	out	0x11, r24	; 17
+		PORTD = (PORTD &~(gpio_Param->Mask)) | (gpio_Param->IsPulledUp&gpio_Param->Mask);
+ 438:	22 b3       	in	r18, 0x12	; 18
+ 43a:	81 81       	ldd	r24, Z+1	; 0x01
+ 43c:	98 2f       	mov	r25, r24
+ 43e:	90 95       	com	r25
+ 440:	29 23       	and	r18, r25
+ 442:	93 81       	ldd	r25, Z+3	; 0x03
+ 444:	98 23       	and	r25, r24
+ 446:	82 2f       	mov	r24, r18
+ 448:	89 2b       	or	r24, r25
+ 44a:	82 bb       	out	0x12, r24	; 18
+ 44c:	08 95       	ret
+
+0000044e <GPIO_Write>:
+		
+	}
+ }
+
+ void GPIO_Write(GPIO_Write_Param_t * gpio_Param)
+ {
+ 44e:	fc 01       	movw	r30, r24
+ switch(gpio_Param->Port_Name)
+ 450:	90 81       	ld	r25, Z
+ 452:	91 30       	cpi	r25, 0x01	; 1
+ 454:	89 f0       	breq	.+34     	; 0x478 <GPIO_Write+0x2a>
+ 456:	28 f0       	brcs	.+10     	; 0x462 <GPIO_Write+0x14>
+ 458:	92 30       	cpi	r25, 0x02	; 2
+ 45a:	c9 f0       	breq	.+50     	; 0x48e <GPIO_Write+0x40>
+ 45c:	93 30       	cpi	r25, 0x03	; 3
+ 45e:	11 f1       	breq	.+68     	; 0x4a4 <GPIO_Write+0x56>
+ 460:	08 95       	ret
+ {
+	 case PT1:
+	 // Set the direction
+	 PORTA = (PORTA &~(gpio_Param->Mask)) | (gpio_Param->Data&gpio_Param->Mask);
+ 462:	2b b3       	in	r18, 0x1b	; 27
+ 464:	81 81       	ldd	r24, Z+1	; 0x01
+ 466:	98 2f       	mov	r25, r24
+ 468:	90 95       	com	r25
+ 46a:	29 23       	and	r18, r25
+ 46c:	92 81       	ldd	r25, Z+2	; 0x02
+ 46e:	98 23       	and	r25, r24
+ 470:	82 2f       	mov	r24, r18
+ 472:	89 2b       	or	r24, r25
+ 474:	8b bb       	out	0x1b, r24	; 27
+	 break;
+ 476:	08 95       	ret
+	 case PT2:
+	 // Set the direction
+	 PORTB = (PORTB &~(gpio_Param->Mask)) | (gpio_Param->Data&gpio_Param->Mask);
+ 478:	28 b3       	in	r18, 0x18	; 24
+ 47a:	81 81       	ldd	r24, Z+1	; 0x01
+ 47c:	98 2f       	mov	r25, r24
+ 47e:	90 95       	com	r25
+ 480:	29 23       	and	r18, r25
+ 482:	92 81       	ldd	r25, Z+2	; 0x02
+ 484:	98 23       	and	r25, r24
+ 486:	82 2f       	mov	r24, r18
+ 488:	89 2b       	or	r24, r25
+ 48a:	88 bb       	out	0x18, r24	; 24
+	 break;
+ 48c:	08 95       	ret
+	 case PT3:
+	 // Set the direction
+	 PORTC = (PORTC &~(gpio_Param->Mask)) | (gpio_Param->Data&gpio_Param->Mask);
+ 48e:	25 b3       	in	r18, 0x15	; 21
+ 490:	81 81       	ldd	r24, Z+1	; 0x01
+ 492:	98 2f       	mov	r25, r24
+ 494:	90 95       	com	r25
+ 496:	29 23       	and	r18, r25
+ 498:	92 81       	ldd	r25, Z+2	; 0x02
+ 49a:	98 23       	and	r25, r24
+ 49c:	82 2f       	mov	r24, r18
+ 49e:	89 2b       	or	r24, r25
+ 4a0:	85 bb       	out	0x15, r24	; 21
+	 break;
+ 4a2:	08 95       	ret
+	 case PT4:
+	 // Set the direction
+	 PORTD = (PORTD &~(gpio_Param->Mask)) | (gpio_Param->Data&gpio_Param->Mask);
+ 4a4:	22 b3       	in	r18, 0x12	; 18
+ 4a6:	81 81       	ldd	r24, Z+1	; 0x01
+ 4a8:	98 2f       	mov	r25, r24
+ 4aa:	90 95       	com	r25
+ 4ac:	29 23       	and	r18, r25
+ 4ae:	92 81       	ldd	r25, Z+2	; 0x02
+ 4b0:	98 23       	and	r25, r24
+ 4b2:	82 2f       	mov	r24, r18
+ 4b4:	89 2b       	or	r24, r25
+ 4b6:	82 bb       	out	0x12, r24	; 18
+ 4b8:	08 95       	ret
+
+000004ba <GPIO_Read>:
+	 break;
+	 
+ }
+ }
+ uint8_t GPIO_Read(GPIO_Read_Param_t * gpio_Param)
+ {
+ 4ba:	fc 01       	movw	r30, r24
+	uint8_t value = 0;
+	switch(gpio_Param->Port_Name)
+ 4bc:	90 81       	ld	r25, Z
+ 4be:	91 30       	cpi	r25, 0x01	; 1
+ 4c0:	51 f0       	breq	.+20     	; 0x4d6 <GPIO_Read+0x1c>
+ 4c2:	28 f0       	brcs	.+10     	; 0x4ce <GPIO_Read+0x14>
+ 4c4:	92 30       	cpi	r25, 0x02	; 2
+ 4c6:	59 f0       	breq	.+22     	; 0x4de <GPIO_Read+0x24>
+ 4c8:	93 30       	cpi	r25, 0x03	; 3
+ 4ca:	69 f0       	breq	.+26     	; 0x4e6 <GPIO_Read+0x2c>
+ 4cc:	10 c0       	rjmp	.+32     	; 0x4ee <GPIO_Read+0x34>
+	{
+		case PT1:
+		// Set the direction
+		value = (PINA &(gpio_Param->Mask));
+ 4ce:	99 b3       	in	r25, 0x19	; 25
+ 4d0:	81 81       	ldd	r24, Z+1	; 0x01
+ 4d2:	89 23       	and	r24, r25
+		break;
+ 4d4:	08 95       	ret
+		case PT2:
+		// Set the direction
+		value = (PINB &(gpio_Param->Mask));
+ 4d6:	96 b3       	in	r25, 0x16	; 22
+ 4d8:	81 81       	ldd	r24, Z+1	; 0x01
+ 4da:	89 23       	and	r24, r25
+		break;
+ 4dc:	08 95       	ret
+		case PT3:
+		// Set the direction
+		value = (PINC &(gpio_Param->Mask));
+ 4de:	93 b3       	in	r25, 0x13	; 19
+ 4e0:	81 81       	ldd	r24, Z+1	; 0x01
+ 4e2:	89 23       	and	r24, r25
+		break;
+ 4e4:	08 95       	ret
+		case PT4:
+		// Set the direction
+		value = (PIND &(gpio_Param->Mask));
+ 4e6:	90 b3       	in	r25, 0x10	; 16
+ 4e8:	81 81       	ldd	r24, Z+1	; 0x01
+ 4ea:	89 23       	and	r24, r25
+		break;
+ 4ec:	08 95       	ret
+	 
+ }
+ }
+ uint8_t GPIO_Read(GPIO_Read_Param_t * gpio_Param)
+ {
+	uint8_t value = 0;
+ 4ee:	80 e0       	ldi	r24, 0x00	; 0
+		// nothing changed =>> MISRA rule
+		break;
+		
+	}
+	return value;
+ 4f0:	08 95       	ret
+
+000004f2 <_exit>:
+ 4f2:	f8 94       	cli
+
+000004f4 <__stop_program>:
+ 4f4:	ff cf       	rjmp	.-2      	; 0x4f4 <__stop_program>
